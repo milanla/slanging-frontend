@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import MainContainer from './containers/MainContainer';
+import HomePage from './containers/HomePage';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
+import NavBar from './components/NavBar'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 class App extends Component {
 
   state = {
-    user: {}
+    user: null
   }
 
   componentDidMount = () => {
@@ -20,10 +21,12 @@ class App extends Component {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Accepts': 'application/json',
           Authorization: token
         }
       })
+        .then(res => res.json())
+        .then(user => this.setState({ user: user.user }))
     } else {
       this.props.history.push('/login')
     }
@@ -31,7 +34,6 @@ class App extends Component {
 
   handleSignupSubmit = (e, userInfo) => {
     e.preventDefault()
-    // once the user submit, we need to create a user
     this.createUser(userInfo)
   }
 
@@ -62,14 +64,13 @@ class App extends Component {
   }
 
   handleLoginSubmit = (e, userInfo) => {
-    // console.log(userInfo)
     e.preventDefault()
     this.login(userInfo)
   }
 
   login = (userInfo) => {
-    console.log(userInfo)
     let url = 'http://localhost:3000/api/v1/login'
+
     fetch(url, {
       method: 'POST',
       headers: {
@@ -81,28 +82,36 @@ class App extends Component {
       })
     })
       .then(res => res.json())
-      .then(console.log)
+      .then(user => {
+        localStorage.setItem('token', user.jwt)
+        // console.log(user)
+        this.setState({
+          user: user.user
+        })
+      })
+      this.props.history.push('/')
   }
 
   render() {
     return (
-      <div>
-      <Switch>
-        <Route
-          exact path="/"
-          render={() => <MainContainer user={this.state.user}/> }
-        />
-        <Route
-          exact path="/signup"
-          render={() => <SignUpForm signupFormSubmit={this.handleSignupSubmit}/> }
-        />
-        <Route
-          exact path="/login"
-          render={() => <LoginForm
-          loginFormSubmit={this.handleLoginSubmit}/> }
-        />
-      </Switch>
-      </div>
+      <React.Fragment>
+        <Route path="/" render={(props) => <NavBar history={props.history} user={this.state.user}/>} />
+        <Switch>
+          <Route
+            exact path="/"
+            render={() => <HomePage user={this.state.user}/> }
+          />
+          <Route
+            exact path="/signup"
+            render={() => <SignUpForm signupFormSubmit={this.handleSignupSubmit}/> }
+          />
+          <Route
+            exact path="/login"
+            render={() => <LoginForm
+            loginFormSubmit={this.handleLoginSubmit}/> }
+          />
+        </Switch>
+      </React.Fragment>
     );
   }
 }

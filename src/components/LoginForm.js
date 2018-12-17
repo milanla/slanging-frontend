@@ -15,25 +15,34 @@ export default class LoginFrom extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Log In</h1>
-        <form onSubmit={(e) => this.props.loginFormSubmit(e, this.state)}>
-          <label> Username </label>
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={this.state.username}
-            onChange={(e) => this.handleLoginChange(e)}/>
-          <label> Password </label>
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={this.state.password}
-            onChange={(e) => this.handleLoginChange(e)}/>
-          <button>Log in</button>
-        </form>
+      <div className="mainWrapper">
+        <h1>Login</h1>
+        <div className="ui segment appForm">
+          <form
+            className="ui form"
+            onSubmit={(e) => this.props.loginFormSubmit(e, this.state)}>
+            <div className="field">
+              <label> Username </label>
+              <input
+                type="text"
+                name="username"
+                placeholder="username"
+                value={this.state.username}
+                onChange={(e) => this.handleLoginChange(e)}/>
+            </div>
+            <div className="field">
+              <label> Password </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                value={this.state.password}
+                onChange={(e) => this.handleLoginChange(e)}/>
+            </div>
+            <button className="fluid ui button">Login</button>
+          </form>
+          <p>Not a member? Sign up here</p>
+        </div>
       </div>
     )
   }
