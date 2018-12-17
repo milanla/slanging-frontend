@@ -28,7 +28,7 @@ class App extends Component {
         .then(res => res.json())
         .then(user => this.setState({ user: user.user }))
     } else {
-      this.props.history.push('/login')
+      this.props.history.push('/signup')
     }
   }
 
@@ -55,12 +55,12 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(user => {
-        console.log(user)
-        localStorage.setItem('token', user.user.id)
+        localStorage.setItem('token', user.jwt)
         this.setState({
           user: user.user
         })
       })
+      this.props.history.push('/')
   }
 
   handleLoginSubmit = (e, userInfo) => {
@@ -84,7 +84,6 @@ class App extends Component {
       .then(res => res.json())
       .then(user => {
         localStorage.setItem('token', user.jwt)
-        // console.log(user)
         this.setState({
           user: user.user
         })

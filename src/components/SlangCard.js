@@ -5,7 +5,7 @@ const SlangCard = (props) => {
 
   return (
     <div className="slangCard">
-      <h2> {props.slang.term} </h2>
+      <h2> {props.slang.term.toUpperCase()} </h2>
     </div>
   )
 }
