@@ -68,6 +68,13 @@ let SlangArray = [
     definition: ["when you're dying for attention", "desparate"],
     example: "She is always posting pictures with extreme cleavage, thirsty much?",
     author: "Brian"
+  },
+  {
+    id: 11,
+    term: "dope",
+    definition: ["Saying something is cool"],
+    example: "Yo that new shirt is dope!",
+    author: "Christine"
   }
 ];
 

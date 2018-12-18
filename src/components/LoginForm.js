@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 export default class LoginFrom extends Component {
 
@@ -41,7 +42,7 @@ export default class LoginFrom extends Component {
             </div>
             <button className="fluid ui button">Login</button>
           </form>
-          <p>Not a member? Sign up here</p>
+          <p>Not a member? <Link to="/signup">Sign up here</Link></p>
         </div>
       </div>
     )

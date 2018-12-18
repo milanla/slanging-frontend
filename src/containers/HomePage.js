@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import LoginForm from '../components/LoginForm'
-import SlangCard from '../components/SlangCard'
-import SlangArray from '../SlangArray'
+import SlangCard from '../components/SlangCard';
+import SlangArray from '../SlangArray';
+// import { Link } from 'react-router-dom';
 
 class HomePage extends Component {
 
@@ -17,8 +18,15 @@ class HomePage extends Component {
 
     return (
       <div>
-        <h1> Welcome </h1>
+        <div id="landingPage">
+          <h1> Welcome </h1>
+          <div id="arrow">
+            <a href="#mainCon"><span></span><span></span><span></span></a>
+          </div>
+        </div>
+        <div id="mainCon" className="slangCon">
           {mapState}
+        </div>
       </div>
     )
   }
