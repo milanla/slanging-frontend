@@ -4,8 +4,8 @@
 }
 
 .appForm {
-  left: 35%;
-  width: 30%;
+  width: 50%;
+  left: 25%;
 }
 
 .mainWrapper {
@@ -27,24 +27,36 @@
 
 .mainWrapper h1 {
   margin-bottom: 3%;
+  text-align: center;
 }
 
 .slangCon {
-  margin-left: 5vh;
+  margin-left: 10vh;
   width: 70vh;
   height: 80vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  float: left;
-  clear: both;
 }
 
 .slangCard {
   font-family: 'Paytone One', sans-serif;
-  font-size: 7em;
+  font-size: 6em;
   text-transform: uppercase;
   margin: 0 auto;
   min-height: 10vh;
   padding: 2rem;
   cursor: pointer;
+}
+
+.profileCon {
+  margin: 0 auto;
+  width: 70%;
+  height: 600px;
+}
+
+.profileCon h1 {
+  font-family: 'Paytone One', sans-serif;
+  font-size: 4em;
+  text-transform: uppercase;
+  text-align: center;
 }

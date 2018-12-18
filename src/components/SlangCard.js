@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SlangCard = (props) => {
-  // console.log(props)
 
   const colors = [
     "#ffc94c",

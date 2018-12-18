@@ -5,6 +5,7 @@ import './arrow.css';
 import HomePage from './containers/HomePage';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
+import Profile from './components/Profile'
 import NavBar from './components/NavBar'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
@@ -30,7 +31,7 @@ class App extends Component {
         .then(res => res.json())
         .then(user => this.setState({ user: user.user }))
     } else {
-      this.props.history.push('/signup')
+      this.props.history.push('/')
     }
   }
 
@@ -93,10 +94,17 @@ class App extends Component {
       this.props.history.push('/')
   }
 
+  // logout = (e) => {
+  //   console.log('here')
+  //   localStorage.removeItem("token")
+  //   window.location.reload()
+  // }
+
   render() {
     return (
       <React.Fragment>
-        <Route path="/" render={(props) => <NavBar history={props.history} user={this.state.user}/>} />
+        <Route path="/" render={(props) => <NavBar history={props.history} user={this.state.user}/>}
+        />
         <Switch>
           <Route
             exact path="/"
@@ -110,6 +118,11 @@ class App extends Component {
             exact path="/login"
             render={() => <LoginForm
             loginFormSubmit={this.handleLoginSubmit}/> }
+          />
+          <Route
+            exact path="/profile"
+            render={(props) => <Profile user={this.state.user}
+            history={props.history}/>}
           />
         </Switch>
       </React.Fragment>

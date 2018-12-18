@@ -4,6 +4,13 @@ import { withRouter } from 'react-router-dom';
 
 class NavBar extends Component {
 
+  logout = (e) => {
+    console.log('log out')
+    localStorage.removeItem("token")
+    window.location.reload()
+    alert('Successfully logout')
+  }
+
   render() {
     return (
       <div className="ui secondary menu">
@@ -21,11 +28,15 @@ class NavBar extends Component {
                 <Link to='/'>Home</Link>
               </li>
               <li>
-                <Link to='/signup'>Sign Up</Link>
+                {this.props.user ?
+                  null
+                  :
+                  <Link to='/signup'>Sign Up</Link>
+                }
               </li>
               <li>
                 {this.props.user ?
-                  <div>Logout</div>
+                  <div onClick={this.logout}>Logout</div>
                   :
                   <Link to='/login'>Login</Link>
                 }
@@ -35,10 +46,14 @@ class NavBar extends Component {
         </div>
         <div className="right menu">
           <div className="ui item">
-            {this.props.user ? 'Hi ' + this.props.user.username : null }
+            {this.props.user ? 'Hi ' + this.props.user.username + '!': null }
           </div>
           <div className="ui item">
-            <i className="user circle outline large icon"></i>
+            {this.props.user ?
+              <Link to="/profile"><i className="user circle outline large icon"></i></Link>
+              :
+              null
+            }
           </div>
         </div>
       </div>
