@@ -2,9 +2,11 @@ import React from 'react'
 
 const SlangPage = (props) => {
   // console.log(props.slangObj)
-  if(props.slangObj.status){
+if (props.searchText === '') {
+  return <h3>Search some slang</h3>
+} else if (props.slangObj.status) {
     return  <h3>No slang found</h3>
-  } else {
+} else {
     return (
       <div>
         <h1>{props.slangObj.term.toUpperCase()}</h1>
