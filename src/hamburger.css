@@ -6,17 +6,6 @@ body {
   color: #cdcdcd;
   font-family: "Avenir Next", "Avenir", sans-serif;
 }
-/* 
-a {
-  text-decoration: none;
-  color: #ff9976;
-
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: tomato;
-} */
 
 #menuToggle {
   display: block;
@@ -40,15 +29,12 @@ a:hover {
 
   cursor: pointer;
 
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
+  opacity: 0;
+  z-index: 2;
 
   -webkit-touch-callout: none;
 }
 
-/*
- * Just a quick hamburger
- */
 #menuToggle span {
   display: block;
   width: 33px;

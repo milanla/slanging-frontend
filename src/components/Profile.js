@@ -25,9 +25,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="profileCon">
-
-          <h1>Yo Slangs</h1>
-
+          <h1>Yo Slangs</h1>        
       </div>
     )
   }

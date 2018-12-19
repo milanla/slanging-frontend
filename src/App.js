@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import './hamburger.css';
 import './arrow.css';
+import './hamburger.css';
 import HomePage from './containers/HomePage';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
