@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SlangCard = (props) => {
 
@@ -15,9 +15,20 @@ const SlangCard = (props) => {
   const randomColor = colors[Math.floor(Math.random()*colors.length)]
 
   return (
-    <div className="slangCard" style={{color: randomColor}}>
-      {props.slang.term}
+    <div className="ui segment" style={{ borderColor: randomColor }}>
+        <h3>Definition</h3>
+          <p>
+            {props.slangObj.definition}
+          </p>
+        <h3>Example</h3>
+          <p>
+            {props.slangObj.example}
+          </p>
+          <p>
+            <strong>by</strong> {props.slangObj.author}
+          </p>
     </div>
   )
 }
+
 export default SlangCard;

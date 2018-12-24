@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { signUpSubmit } from '../store/actions/adapter';
 
 class SignUpForm extends Component {
   state = {
@@ -12,6 +14,12 @@ class SignUpForm extends Component {
     })
   }
 
+  handleSignUpSubmit = (e) => {
+    e.preventDefault()
+    this.props.signUpFromSubmit(this.state)
+    this.props.history.push('/')
+  }
+
   render() {
     return (
       <div className="mainWrapper">
@@ -19,7 +27,7 @@ class SignUpForm extends Component {
         <div className="ui segment appForm">
           <form
             className="ui form"
-            onSubmit={(e) => this.props.signupFormSubmit(e, this.state)}>
+            onSubmit={this.handleSignUpSubmit}>
             <div className="field">
               <label> Username </label>
               <input
@@ -46,4 +54,12 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUpFromSubmit: (state) => dispatch(() => {
+      signUpSubmit(dispatch, state)
+    })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignUpForm);

@@ -11,7 +11,7 @@ const NewSlangForm = () => {
           <input type="text" name="definition" placeholder="Definition" />
         </div>
         <div className="field">
-          <input type="submit" value="Submit" />
+          <input className="fluid ui button" type="submit" value="Submit" />
         </div>
       </form>
     </div>

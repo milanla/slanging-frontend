@@ -1,11 +1,11 @@
-#landingPage {
+/* #landingPage {
   width: 100%;
   height: 80vh;
   float: right;
-}
+} */
 
 #mainCon {
-  margin-top: 60%;
+  margin-top: 12%;
 }
 
 .appForm {
@@ -23,9 +23,10 @@
     display:none;
 }
 
-#landingPage h1 {
+/* #landingPage h1 {
   margin-right: 7%;
   text-align: right;
+  text-shadow: gray 1px 1px 5px;
   font-size: 10em;
   font-family: 'Paytone One', sans-serif;
   color: #2E3031;
@@ -38,7 +39,7 @@
   font-weight: 100;
   text-align: right;
   color: #ff9976;
-}
+} */
 
 .mainWrapper h1 {
   margin-bottom: 3%;
@@ -86,6 +87,7 @@
   margin: 0 auto;
   width: 45vw;
   height: 60vh;
+  overflow: visible;
 }
 
 .searchResult h1 {
@@ -125,4 +127,28 @@
 img {
   width: 100%;
   height: 100%;
+}
+
+.newSlangForm {
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+}
+
+.slangCardCon {
+  margin: 0 auto;
+  text-align: center;
+  width: 70%;
+  height: 65%;
+}
+
+.addNewSlangBtn {
+  text-align: center;
+  bottom: 10%;
+}
+
+.addNewSlangBtn img {
+  width: 7%;
+  height: 7%;
 }

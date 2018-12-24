@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { clearUser } from '../store/actions/userActions'
 
 class NavBar extends Component {
 
   logout = (e) => {
     console.log('log out')
     localStorage.removeItem("token")
-    window.location.reload()
+    this.props.logout()
     alert('Successfully logout')
+    this.props.clearSearch()
   }
 
   render() {
@@ -16,13 +19,10 @@ class NavBar extends Component {
       <div className="ui secondary menu">
         <div className="ui item">
           <div id="menuToggle">
-
             <input type="checkbox" />
-
             <span></span>
             <span></span>
             <span></span>
-
             <ul id="menu">
               <li>
                 <Link to='/'>Home</Link>
@@ -61,4 +61,17 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(NavBar)
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(clearUser()),
+    clearSearch : () => dispatch({ type:'CLEAR_SEARCH' })
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
