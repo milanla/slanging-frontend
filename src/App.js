@@ -3,14 +3,16 @@ import React, { Component } from 'react';
 import './css/App.css';
 import './css/App.css';
 import './css/hamburger.css';
+import './css/form.css'
+import './css/slangform.scss'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import HomePage from './containers/HomePage';
-import SignUpForm from './components/SignUpForm';
-import LoginForm from './components/LoginForm';
 import Profile from './components/Profile';
-import NewSlangPage from './containers/NewSlangPage';
+import NewSlangForm from './components/NewSlangForm';
+import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
 
 import { connect } from 'react-redux';
 
@@ -33,7 +35,7 @@ class App extends Component {
         <Route exact path="/signup" component={SignUpForm}/>
         <Route exact path="/login" component={LoginForm}/>
         <Route exact path="/profile" component={Profile}/>
-        <Route exact path="/new_slang" component={NewSlangPage}/>
+        <Route exact path="/addslang" component={NewSlangForm}/>
         </div>
       </Router>
     );

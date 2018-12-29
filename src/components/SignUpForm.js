@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import NavBar from './NavBar';
+
+import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { signUpSubmit } from '../store/actions/adapter';
 
@@ -22,31 +26,44 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div className="mainWrapper">
-        <h1>Sign Up</h1>
-        <div className="ui segment appForm">
+      <div>
+        <NavBar />
+        <div className="formSection">
+          <div className="info">
+          </div>
           <form
-            className="ui form"
+            className="appForm"
             onSubmit={this.handleSignUpSubmit}>
-            <div className="field">
-              <label> Username </label>
+            <div className="formHeader">
+              <h2>Help your homie learn slang</h2>
+              <h3>Sign up here</h3>
+            </div>
+            <div>
+              <label htmlFor="username"></label>
               <input
                 type="text"
                 name="username"
+                className="inputFields"
                 placeholder="username"
+                autoComplete="off"
                 value={this.state.username}
-                onChange={(e) => this.handleSignupChange(e)}/>
+                onChange={this.handleSignupChange} required/>
             </div>
-            <div className="field">
-              <label> Password </label>
+            <div>
+              <label htmlFor="password"></label>
               <input
                 type="password"
                 name="password"
+                className="inputFields"
                 placeholder="password"
+                autoComplete="off"
                 value={this.state.password}
-                onChange={(e) => this.handleSignupChange(e)}/>
+                onChange={this.handleSignupChange} required/>
             </div>
-            <button className="fluid ui button">Create new account</button>
+            <input type="submit" className="submitBtn" value="Sign Up" />
+            <div className="linkTo">
+              Already a member? <Link to="/login">Login here</Link>
+            </div>
           </form>
         </div>
       </div>

@@ -14,19 +14,40 @@ const SlangCard = (props) => {
 
   const randomColor = colors[Math.floor(Math.random()*colors.length)]
 
+  const author = () => {
+    if (props.slangObj.author) {
+      return <p><strong>by&nbsp;&nbsp;</strong>{props.slangObj.author}</p>
+    }
+  }
+
+  const deleteButton = () => {
+    if (!props.slangObj.author) {
+      return (
+        <i className="trash alternate icon"></i>
+      )
+    }
+  }
+
   return (
-    <div className="ui segment" style={{ borderColor: randomColor }}>
-        <h3>Definition</h3>
+    <div className="ui teal card" style={{ borderColor: randomColor }}>
+      <div className="content">
+        <i className="right floated like icon"></i>
+        <div className="header">{props.slangObj.term.toUpperCase()}</div>
+      </div>
+      <div className="content">
+        <h3 className="ui sub header">Definition</h3>
           <p>
             {props.slangObj.definition}
           </p>
-        <h3>Example</h3>
+        <h3 className="ui sub header">Example</h3>
           <p>
             {props.slangObj.example}
           </p>
-          <p>
-            <strong>by</strong> {props.slangObj.author}
-          </p>
+        </div>
+        <div className="extra content">
+          {author()}
+          {deleteButton()}
+        </div>
     </div>
   )
 }

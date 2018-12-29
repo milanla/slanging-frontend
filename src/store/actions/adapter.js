@@ -1,7 +1,6 @@
 import { setUser } from './userActions'
 
 export const loginSubmit = (dispatch, userInfo) => {
-
   let url = 'http://localhost:3000/api/v1/login'
 
   fetch(url, {

@@ -12,6 +12,7 @@ class NavBar extends Component {
     this.props.logout()
     alert('Successfully logout')
     this.props.clearSearch()
+    this.props.history.push('/')
   }
 
   render() {

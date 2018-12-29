@@ -28,34 +28,43 @@ class LoginForm extends Component {
     return (
       <React.Fragment>
         <NavBar/>
-        <div className="mainWrapper">
-          <h1>Login</h1>
-          <div className="ui segment appForm">
+        <div className="formSection">
+          <div className="info">
+          </div>
             <form
-              className="ui form"
+              className="appForm"
               onSubmit={this.handleLoginSubmit}>
-              <div className="field">
-                <label> Username </label>
+              <div className="formHeader">
+                <h2>Welcome Back!</h2>
+              </div>
+              <div>
+                <label htmlFor="username"></label>
                 <input
                   type="text"
                   name="username"
+                  className="inputFields"
                   placeholder="username"
+                  autoComplete="off"
                   value={this.state.username}
-                  onChange={(e) => this.handleLoginChange(e)}/>
+                  onChange={(e) => this.handleLoginChange(e)} required/>
               </div>
-              <div className="field">
-                <label> Password </label>
+              <div>
+                <label htmlFor="password"></label>
                 <input
                   type="password"
                   name="password"
+                  className="inputFields"
                   placeholder="password"
+                  autoComplete="off"
                   value={this.state.password}
-                  onChange={(e) => this.handleLoginChange(e)}/>
+                  onChange={(e) => this.handleLoginChange(e)} required/>
               </div>
-              <button className="fluid ui button">Login</button>
+              <input type="submit" className="submitBtn" value="Login" />
+              <div className="linkTo">
+                Not a member? <Link to="/signup">Sign up here</Link>
+              </div>
             </form>
-            <p>Not a member? <Link to="/signup">Sign up here</Link></p>
-          </div>
+
       </div>
     </React.Fragment>
     )

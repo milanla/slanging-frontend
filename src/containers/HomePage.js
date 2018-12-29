@@ -51,7 +51,7 @@ class HomePage extends Component {
           <input
             type="text"
             name="search"
-            placeholder="Type Slangs"
+            placeholder="Search Slang..."
             autoComplete="off"
             value={this.state.search}
             onChange={this.handleSearchChange}/>

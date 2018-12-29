@@ -1,5 +1,6 @@
 const initialState = {
-  searchRes: []
+  searchRes: [],
+  slangs: []
 }
 
 const slangReducer = (state = initialState, action) => {
@@ -10,7 +11,10 @@ const slangReducer = (state = initialState, action) => {
     case 'CLEAR_SEARCH': {
       return {...state, searchRes: []}
     }
-    
+    case 'USER_SLANGS': {
+      return {...state, slangs: action.payload}
+    }
+
     default:
       return state;
   }
