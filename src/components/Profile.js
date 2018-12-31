@@ -12,36 +12,23 @@ import { fetchUserSlangs } from '../store/actions/slangActions'
 class Profile extends Component {
 
   componentDidMount() {
-    let token = localStorage.getItem('token')
-
-    if (token) {
-      console.log('in component did mount')
-      this.props.currentUser(token)
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    // debugger
-
-    if (this.props !== prevProps && this.props.slangs.length === 0) {
-      console.log('in component did update')
+    if (this.props.user && this.props.slangs.length === 0) {
       this.props.userSlangs(this.props.user.username)
     }
   }
 
-  showResult = () => {
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user && this.props.slangs.length === 0) {
+      this.props.userSlangs(this.props.user.username)
+      console.log('in component did update')
+    }
+  }
+
+  render() {
     let mapSlang = this.props.slangs.map(slang => {
         return <SlangCard key={slang.id} slangObj={slang} />
       })
 
-    return (
-      <div>
-        {mapSlang}
-      </div>
-    )
-  }
-
-  render() {
     return (
       <React.Fragment>
         <NavBar />
@@ -52,7 +39,7 @@ class Profile extends Component {
           <p>Add new slang</p>
           </div>
           <div className="slangCardCon">
-            {this.showResult()}
+            {mapSlang}
           </div>
         </div>
       </React.Fragment>

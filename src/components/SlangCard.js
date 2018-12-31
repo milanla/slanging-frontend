@@ -1,15 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { handleDeleteSlang } from '../store/actions/slangActions';
 
 const SlangCard = (props) => {
 
   const colors = [
-    "#ffc94c",
-    "#ffb758",
-    "#ffa767",
-    "#ff9976",
-    "#ff8e85",
-    "#F4847B",
-    "#FFC7C7",
+    "ui red card",
+    "ui orange card",
+    "ui yellow card",
+    "ui olive card",
+    "ui green card",
+    "ui teal card",
+    "ui blue card",
+    "ui pink card"
   ]
 
   const randomColor = colors[Math.floor(Math.random()*colors.length)]
@@ -23,25 +26,43 @@ const SlangCard = (props) => {
   const deleteButton = () => {
     if (!props.slangObj.author) {
       return (
-        <i className="trash alternate icon"></i>
+        <i className="trash alternate icon" onClick={(e) => handleDelete(e)}></i>
       )
     }
   }
 
+  const likeButton = () => {
+    if (props.slangObj.author) {
+      return (
+        <i className="right floated like icon" onClick={(e) => handleLike(e)}></i>
+      )
+    }
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault()
+    props.deleteHandler(props.slangObj)
+  }
+
+  const handleLike = (e) => {
+    e.preventDefault()
+    console.log("in handleLike")
+  }
+
   return (
-    <div className="ui teal card" style={{ borderColor: randomColor }}>
+    <div className={randomColor}>
       <div className="content">
-        <i className="right floated like icon"></i>
-        <div className="header">{props.slangObj.term.toUpperCase()}</div>
+        {likeButton()}
+        <div className="header">{props.slangObj.term ? props.slangObj.term.toUpperCase() : null}</div>
       </div>
       <div className="content">
         <h3 className="ui sub header">Definition</h3>
           <p>
-            {props.slangObj.definition}
+            {props.slangObj.term ? props.slangObj.definition : null}
           </p>
         <h3 className="ui sub header">Example</h3>
           <p>
-            {props.slangObj.example}
+            {props.slangObj.term ? props.slangObj.example : null}
           </p>
         </div>
         <div className="extra content">
@@ -52,4 +73,13 @@ const SlangCard = (props) => {
   )
 }
 
-export default SlangCard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteHandler: (slang) => dispatch(() => {
+      handleDeleteSlang(dispatch, slang)
+    })
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(SlangCard);

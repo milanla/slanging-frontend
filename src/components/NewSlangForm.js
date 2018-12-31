@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store/actions/adapter';
+import { handleSlangSubmit } from '../store/actions/slangActions'
 
 class NewSlangForm extends Component {
 
@@ -23,33 +24,16 @@ class NewSlangForm extends Component {
 
   handleNewSlangFormChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, user) => {
     e.preventDefault()
     console.log('in handle submit')
-    let options = {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem('token') },
-          body: JSON.stringify({
-            user_id: this.props.user.id,
-            term: this.state.term,
-            definition: this.state.definition,
-            example: this.state.example
-          })
-        }
-        fetch("http://localhost:3000/slangs", options)
-        this.setState({
-          term: '',
-          definition: '',
-          example: ''
-        })
+    this.props.slangSubmitHandler(this.state, user)
+    this.props.history.push('/profile')
   }
 
   render() {
@@ -58,7 +42,7 @@ class NewSlangForm extends Component {
         <NavBar />
           <form
             className="slangForm"
-            onSubmit={this.handleSubmit}>
+            onSubmit={(e) => this.handleSubmit(e, this.props.user)}>
             <input
               id="input-1"
               type="text"
@@ -115,7 +99,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     currentUser: (token) => dispatch((dispatch) => {
       getCurrentUser(dispatch, token)
-    })
+    }),
+    slangSubmitHandler: (slang, user) => dispatch(() => handleSlangSubmit(dispatch, slang, user))
   }
 }
 
