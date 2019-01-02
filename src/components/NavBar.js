@@ -51,7 +51,7 @@ class NavBar extends Component {
           </div>
           <div className="ui item">
             {this.props.user ?
-              <Link to="/profile"><i className="user circle outline large icon"></i></Link>
+              <Link to="/profile"><i className="user circle outline large icon" onClick={this.props.clearSearch}></i></Link>
               :
               null
             }

@@ -1,6 +1,7 @@
 const initialState = {
   searchRes: [],
-  slangs: []
+  slangs: [],
+  likedSlangs: []
 }
 
 const slangReducer = (state = initialState, action) => {
@@ -25,6 +26,13 @@ const slangReducer = (state = initialState, action) => {
       })
       return {...state, slangs: filteredArr }
     }
+    case 'LIKE_SLANG': {
+      return {...state, likedSlangs: [...state.likedSlangs, action.payload]}
+    }
+    case 'FETCH_LIKE': {
+      return { ...state, likedSlangs: action.payload }
+    }
+
 
     default:
       return state;

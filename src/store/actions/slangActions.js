@@ -5,7 +5,11 @@ export const newSlang = (slang) => ({ type: 'CREATE_SLANG', payload: slang })
 
 export const userSlangs = (slang) => ({ type: 'USER_SLANGS', payload: slang })
 
-export const deleteSlang = (slang) => ({ type: 'DELETE_SLANG', payload: slang})
+export const deleteSlang = (slang) => ({ type: 'DELETE_SLANG', payload: slang })
+
+export const likedSlang = (slang) => ({ type: 'LIKE_SLANG', payload: slang })
+
+export const fetchLikes = (slang) => ({ type: 'FETCH_LIKE', payload: slang })
 
 // thunk creators
 export const fetchSlangs = (dispatch, searchTerm) => {
@@ -63,4 +67,58 @@ export const handleDeleteSlang = (dispatch, slang) => {
       .then(res => res.json())
       .then(console.log)
 
+}
+
+export const handleLikeSlang = (dispatch, slang, user) => {
+  let url = 'http://localhost:3000/liked_slangs'
+  let options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    },
+    body: JSON.stringify({
+      author: slang.author,
+      term: slang.term,
+      definition: slang.definition,
+      example: slang.example
+    })
+  }
+
+  fetch(url, options)
+    .then(res => res.json())
+    .then(data => handleCreateLike(dispatch, user, data))
+}
+
+const handleCreateLike = (dispatch, user, slang) => {
+  let url = 'http://localhost:3000/likes'
+  let options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    },
+    body: JSON.stringify({
+      user_id: user.id,
+      liked_slang_id: slang.id
+    })
+  }
+  fetch(url, options)
+    .then(res => res.json())
+    .then(data => dispatch(likedSlang(data)))
+}
+
+export const fetchLikedSlang = (dispatch, username) => {
+  console.log("in fetch liked slang")
+  let options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+  }
+
+  fetch(`http://localhost:3000/${username}/likes`, options)
+    .then(res => res.json())
+    .then(slang => dispatch(fetchLikes(slang)))
 }

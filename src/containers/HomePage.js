@@ -9,7 +9,15 @@ import { fetchSlangs } from '../store/actions/slangActions';
 class HomePage extends Component {
 
   state = {
-    search: ''
+    search: '',
+    loading: false
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.searchRes[0] !== this.props.searchRes[0]) {
+      // debugger
+      this.setState({ loading: false })
+    }
   }
 
   handleSearchChange = (e) => {
@@ -21,6 +29,7 @@ class HomePage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.fetchSlangs(this.state.search)
+    this.setState({ loading: true })
   }
 
   showResult = () => {
@@ -58,7 +67,15 @@ class HomePage extends Component {
         </form>
         </div>
         <div className="searchResult">
-        {this.showResult()}
+        { this.state.loading === true ?
+          <div>
+            <p></p>
+            <div className="ui active inverted dimmer">
+              <div className="ui loader"></div>
+            </div>
+          </div>
+          :
+          this.showResult()}
         </div>
       </React.Fragment>
     )

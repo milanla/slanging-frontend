@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleDeleteSlang } from '../store/actions/slangActions';
+import { handleLikeSlang } from '../store/actions/slangActions'
 
 const SlangCard = (props) => {
 
@@ -47,6 +48,7 @@ const SlangCard = (props) => {
   const handleLike = (e) => {
     e.preventDefault()
     console.log("in handleLike")
+    props.likeHandler(props.slangObj, props.user)
   }
 
   return (
@@ -73,13 +75,22 @@ const SlangCard = (props) => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteHandler: (slang) => dispatch(() => {
       handleDeleteSlang(dispatch, slang)
+    }),
+    likeHandler: (slang, user) => dispatch(() => {
+      handleLikeSlang(dispatch, slang, user)
     })
   }
 }
 
 
-export default connect(null, mapDispatchToProps)(SlangCard);
+export default connect(mapStateToProps, mapDispatchToProps)(SlangCard);
