@@ -18,7 +18,7 @@ class HomePage extends Component {
     if (prevProps.searchRes[0] !== this.props.searchRes[0]) {
       // debugger
       this.setState({ loading: false })
-      scroll.scrollTo(620)
+      scroll.scrollTo(450)
     }
   }
 
@@ -58,25 +58,18 @@ class HomePage extends Component {
         <NavBar />
         <div id="mainCon">
           <div id="welcomeText">
-            <iframe
-              src="https://giphy.com/embed/xlYKItjhiDsY" width="480"
-              height="270"
-              frameBorder="0"
-              title="welcomeGif">
-              </iframe>
-            <p style={{ color: 'white' }}>via GIPHY</p>
-            <h2>Learn New Slangs</h2>
-          </div>
-          <form className="inputField"
-          onSubmit={this.handleSubmit}>
+            <h1>LEARN NEW SLANG</h1>
+            <form className="inputField"
+            onSubmit={this.handleSubmit}>
             <input
-              type="text"
-              name="search"
-              placeholder="START SEARCHING..."
-              autoComplete="off"
-              value={this.state.search}
-              onChange={this.handleSearchChange}/>
-          </form>
+            type="text"
+            name="search"
+            placeholder="START SEARCHING..."
+            autoComplete="off"
+            value={this.state.search}
+            onChange={this.handleSearchChange}/>
+            </form>
+          </div>
           </div>
           <div className="searchResult">
           { this.state.loading === true ?

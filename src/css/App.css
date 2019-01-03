@@ -1,10 +1,10 @@
 #mainCon {
-  margin-top: 5%;
+  margin-top: 10%;
 }
 
-#welcomeText h2 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 2em;
+#welcomeText h1 {
+  font-family: 'Paytone One', sans-serif;
+  font-size: 7em;
   text-align: center;
   text-transform: uppercase;
 }
@@ -103,4 +103,15 @@
 .addNewSlangBtn img:hover {
   width: 7.5%;
   height: 7.5%;
+}
+
+.noMatchCon {
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+}
+
+.noMatchCon h1 {
+  font-family: 'Paytone One', sans-serif;
+  font-size: 12em;
 }

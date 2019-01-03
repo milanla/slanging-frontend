@@ -5,13 +5,14 @@ import './css/hamburger.css';
 import './css/form.css'
 import './css/slangform.scss'
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import HomePage from './containers/HomePage';
 import Profile from './components/Profile';
 import NewSlangForm from './components/NewSlangForm';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
+import NoMatch from './containers/NoMatch.js';
 
 import { connect } from 'react-redux';
 
@@ -30,11 +31,14 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/signup" component={SignUpForm}/>
-        <Route exact path="/login" component={LoginForm}/>
-        <Route exact path="/profile" component={Profile}/>
-        <Route exact path="/addslang" component={NewSlangForm}/>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/signup" component={SignUpForm}/>
+            <Route exact path="/login" component={LoginForm}/>
+            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/addslang" component={NewSlangForm}/>
+            <Route component={NoMatch} />
+          </Switch>
         </div>
       </Router>
     );
