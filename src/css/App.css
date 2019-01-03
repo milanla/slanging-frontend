@@ -1,5 +1,17 @@
 #mainCon {
-  margin-top: 12%;
+  margin-top: 5%;
+}
+
+#welcomeText h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#welcomeText {
+  margin: 0 auto;
+  text-align: center;
 }
 
 ::-webkit-scrollbar {
@@ -49,7 +61,7 @@
   font-family: 'Lato', sans-serif;
   overflow: visible;
   line-height: 1.15;
-  margin: 90px auto;
+  margin: 40px auto;
   cursor: text;
   outline: none;
 }
@@ -61,11 +73,19 @@
   float: left;
 }
 
+.slangCardCon h2 {
+  text-align: right;
+}
+
 .likeCon {
   width: 40%;
   height: 50%;
   margin: 10% auto;
   float: right;
+}
+
+.likeCon h2 {
+  text-align: left;
 }
 
 .addNewSlangBtn {
@@ -80,7 +100,7 @@
   height: 7%;
 }
 
-.rightFloat {
-  float: right;
-  margin: 0 0 -50px 0;
+.addNewSlangBtn img:hover {
+  width: 7.5%;
+  height: 7.5%;
 }

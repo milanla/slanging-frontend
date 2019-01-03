@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './css/App.css';
-import './css/App.css';
 import './css/hamburger.css';
 import './css/form.css'
 import './css/slangform.scss'

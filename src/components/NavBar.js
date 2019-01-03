@@ -47,7 +47,7 @@ class NavBar extends Component {
         </div>
         <div className="right menu">
           <div className="ui item">
-            {this.props.user ? 'Hi ' + this.props.user.username + '!': null }
+            <h5>{this.props.user ? 'Hi ' + this.props.user.username + '!': null }</h5>
           </div>
           <div className="ui item">
             {this.props.user ?

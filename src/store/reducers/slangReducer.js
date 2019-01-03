@@ -31,14 +31,12 @@ const slangReducer = (state = initialState, action) => {
     case 'FETCH_LIKE': {
       return { ...state, likedSlangs: action.payload }
     }
-
     case 'UNLIKE_SLANG': {
       const filteredArr = state.likedSlangs.filter(slang => {
         return slang.id !== action.payload.id
       })
       return { ...state, likedSlangs: filteredArr }
     }
-
 
     default:
       return state;

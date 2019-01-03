@@ -47,6 +47,13 @@ $primary: #ff9976;
   box-shadow: 0 3px 5px 1px rgba(#000, 0.25);
 }
 
+button:hover {
+  background-color: #FFA391;
+  box-shadow: 0 3px 5px 1px rgba(#000, 0.25);
+  transform: translateY(4px);
+  cursor: pointer;
+}
+
 .slangForm input:focus, button:focus {
   opacity: 1;
   transform: translate(-50%, -100%);

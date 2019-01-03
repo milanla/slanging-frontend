@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SlangCard from '../components/SlangCard';
 import NavBar from '../components/NavBar';
+import { animateScroll as scroll } from 'react-scroll';
 
 import { connect } from 'react-redux';
 
@@ -17,6 +18,7 @@ class HomePage extends Component {
     if (prevProps.searchRes[0] !== this.props.searchRes[0]) {
       // debugger
       this.setState({ loading: false })
+      scroll.scrollTo(620)
     }
   }
 
@@ -55,28 +57,38 @@ class HomePage extends Component {
       <React.Fragment>
         <NavBar />
         <div id="mainCon">
-        <form className="inputField"
-        onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="search"
-            placeholder="Search Slang..."
-            autoComplete="off"
-            value={this.state.search}
-            onChange={this.handleSearchChange}/>
-        </form>
-        </div>
-        <div className="searchResult">
-        { this.state.loading === true ?
-          <div>
-            <p></p>
-            <div className="ui active inverted dimmer">
-              <div className="ui loader"></div>
-            </div>
+          <div id="welcomeText">
+            <iframe
+              src="https://giphy.com/embed/xlYKItjhiDsY" width="480"
+              height="270"
+              frameBorder="0"
+              title="welcomeGif">
+              </iframe>
+            <p style={{ color: 'white' }}>via GIPHY</p>
+            <h2>Learn New Slangs</h2>
           </div>
-          :
-          this.showResult()}
-        </div>
+          <form className="inputField"
+          onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="search"
+              placeholder="START SEARCHING..."
+              autoComplete="off"
+              value={this.state.search}
+              onChange={this.handleSearchChange}/>
+          </form>
+          </div>
+          <div className="searchResult">
+          { this.state.loading === true ?
+            <div>
+              <p></p>
+              <div className="ui active inverted dimmer">
+                <div className="ui loader"></div>
+              </div>
+            </div>
+            :
+            this.showResult()}
+          </div>
       </React.Fragment>
     )
   }

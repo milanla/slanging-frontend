@@ -22,7 +22,6 @@ class Profile extends Component {
     if (prevProps.user !== this.props.user && this.props.slangs.length === 0 || prevProps.user !== this.props.user && this.props.likeSlangs.length === 0) {
       this.props.userSlangs(this.props.user.username)
       this.props.userLikes(this.props.user.username)
-      console.log(this.props.likeSlangs)
     }
   }
 
@@ -46,9 +45,11 @@ class Profile extends Component {
           <p>Add new slang</p>
           </div>
           <div className="slangCardCon">
+            <h2><i className="keyboard outline icon"></i></h2>
             {mapSlang}
           </div>
           <div className="likeCon">
+            <h2><i className="heart outline icon"></i></h2>
             {mapLikes}
           </div>
         </div>
