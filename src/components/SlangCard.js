@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleDeleteSlang } from '../store/actions/slangActions';
-import { handleLikeSlang } from '../store/actions/slangActions'
+import { handleLikeSlang } from '../store/actions/slangActions';
+import { handleUnlike } from '../store/actions/slangActions';
 
 const SlangCard = (props) => {
 
@@ -35,7 +36,7 @@ const SlangCard = (props) => {
   const likeButton = () => {
     if (props.slangObj.author) {
       return (
-        <i className="right floated like icon" onClick={(e) => handleLike(e)}></i>
+        <i className={props.liked ? "active right floated like icon" : "right floated like icon"} onClick={(e) => handleLike(e)}></i>
       )
     }
   }
@@ -48,7 +49,11 @@ const SlangCard = (props) => {
   const handleLike = (e) => {
     e.preventDefault()
     console.log("in handleLike")
-    props.likeHandler(props.slangObj, props.user)
+    if (props.liked === true) {
+      props.unlikeHandler(props.slangObj)
+    } else {
+      props.likeHandler(props.slangObj, props.user)
+    }
   }
 
   return (
@@ -88,6 +93,9 @@ const mapDispatchToProps = (dispatch) => {
     }),
     likeHandler: (slang, user) => dispatch(() => {
       handleLikeSlang(dispatch, slang, user)
+    }),
+    unlikeHandler: (slang) => dispatch(() => {
+      handleUnlike(dispatch, slang)
     })
   }
 }

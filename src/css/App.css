@@ -8,7 +8,7 @@
 
 .profileCon {
   margin: 0 auto 5%;
-  width: 70%;
+  width: 60%;
 }
 
 .profileCon h1 {
@@ -55,10 +55,17 @@
 }
 
 .slangCardCon {
-  margin: 0 auto;
-  width: 50%;
+  width: 40%;
   height: 50%;
-  margin-bottom: 50px;
+  margin: 10% auto;
+  float: left;
+}
+
+.likeCon {
+  width: 40%;
+  height: 50%;
+  margin: 10% auto;
+  float: right;
 }
 
 .addNewSlangBtn {

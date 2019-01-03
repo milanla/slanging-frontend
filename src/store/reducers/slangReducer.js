@@ -20,7 +20,6 @@ const slangReducer = (state = initialState, action) => {
       return {...state, slangs: action.payload}
     }
     case 'DELETE_SLANG': {
-      // debugger
       const filteredArr = state.slangs.filter(slang => {
         return slang.id !== action.payload.id
       })
@@ -31,6 +30,13 @@ const slangReducer = (state = initialState, action) => {
     }
     case 'FETCH_LIKE': {
       return { ...state, likedSlangs: action.payload }
+    }
+
+    case 'UNLIKE_SLANG': {
+      const filteredArr = state.likedSlangs.filter(slang => {
+        return slang.id !== action.payload.id
+      })
+      return { ...state, likedSlangs: filteredArr }
     }
 
 

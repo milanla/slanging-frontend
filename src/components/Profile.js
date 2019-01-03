@@ -12,17 +12,17 @@ import { fetchLikedSlang } from '../store/actions/slangActions';
 class Profile extends Component {
 
   componentDidMount() {
-    if (this.props.user && this.props.slangs.length === 0) {
+    if (this.props.user && this.props.slangs.length === 0 || this.props.user && this.props.likeSlangs.length === 0) {
       this.props.userSlangs(this.props.user.username)
       this.props.userLikes(this.props.user.username)
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user && this.props.slangs.length === 0) {
+    if (prevProps.user !== this.props.user && this.props.slangs.length === 0 || prevProps.user !== this.props.user && this.props.likeSlangs.length === 0) {
       this.props.userSlangs(this.props.user.username)
       this.props.userLikes(this.props.user.username)
-      console.log('in component did update')
+      console.log(this.props.likeSlangs)
     }
   }
 
@@ -32,7 +32,8 @@ class Profile extends Component {
       })
 
     let mapLikes = this.props.likeSlangs.map(slang => {
-      return <SlangCard key={slang.author} slangObj={slang} />
+      // debugger
+      return <SlangCard key={slang.author} slangObj={slang} liked={true} />
     })
 
     return (
@@ -46,6 +47,8 @@ class Profile extends Component {
           </div>
           <div className="slangCardCon">
             {mapSlang}
+          </div>
+          <div className="likeCon">
             {mapLikes}
           </div>
         </div>

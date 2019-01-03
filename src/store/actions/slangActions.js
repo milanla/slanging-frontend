@@ -11,6 +11,8 @@ export const likedSlang = (slang) => ({ type: 'LIKE_SLANG', payload: slang })
 
 export const fetchLikes = (slang) => ({ type: 'FETCH_LIKE', payload: slang })
 
+export const unlikeSlang = (slang) => ({ type: 'UNLIKE_SLANG', payload: slang })
+
 // thunk creators
 export const fetchSlangs = (dispatch, searchTerm) => {
   fetch(`http://localhost:3000/slang/${searchTerm}`)
@@ -87,10 +89,13 @@ export const handleLikeSlang = (dispatch, slang, user) => {
 
   fetch(url, options)
     .then(res => res.json())
-    .then(data => handleCreateLike(dispatch, user, data))
+    .then(data => {
+      handleCreateLike(user, data)
+      dispatch(likedSlang(data))
+    })
 }
 
-const handleCreateLike = (dispatch, user, slang) => {
+const handleCreateLike = (user, slang) => {
   let url = 'http://localhost:3000/likes'
   let options = {
     method: 'POST',
@@ -105,7 +110,7 @@ const handleCreateLike = (dispatch, user, slang) => {
   }
   fetch(url, options)
     .then(res => res.json())
-    .then(data => dispatch(likedSlang(data)))
+    .then(console.log)
 }
 
 export const fetchLikedSlang = (dispatch, username) => {
@@ -121,4 +126,21 @@ export const fetchLikedSlang = (dispatch, username) => {
   fetch(`http://localhost:3000/${username}/likes`, options)
     .then(res => res.json())
     .then(slang => dispatch(fetchLikes(slang)))
+}
+
+export const handleUnlike = (dispatch, slang) => {
+  console.log("in handle unlike")
+  dispatch(unlikeSlang(slang))
+
+  let options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+  }
+
+  fetch(`http://localhost:3000/liked_slangs/${slang.id}`, options)
+    .then(res => res.json())
+    .then(console.log)
 }
